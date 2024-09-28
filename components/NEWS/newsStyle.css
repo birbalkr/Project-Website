@@ -1,12 +1,25 @@
-*{
-    margin: 0.2px;  
+* {
+    margin: 0.2px;
 }
-.carousel-item img {
-            height: 400px; /* Set the desired height */
-            object-fit: cover; /* Cover the area while maintaining aspect ratio */
-            width: 100%; /* Make sure the image takes the full width */
-        }
 
-        .carousel-inner {
-            height: 300px; /* Match the height of the carousel inner */
-        }
+.carousel-item img {
+    height: 600px;
+    /* Set the desired height */
+    object-fit: fill;
+    /* Cover the area while maintaining aspect ratio */
+    width: 100%;
+    /* Make sure the image takes the full width */
+}
+
+.carousel-inner {
+    height: 400px;
+    /* Match the height of the carousel inner */
+}
+
+#tailwindcard {
+    display: flex;
+    justify-content: space-evenly;
+}
+.imghight{
+    height: 100px;
+}
