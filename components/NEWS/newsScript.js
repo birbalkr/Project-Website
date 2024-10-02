@@ -2,13 +2,13 @@ const imgItem = document.getElementById('imgItem');
 const tailwindcard = document.getElementById('tailwindcard');
 const carouselIndicators = document.getElementById('carouselIndicators');
 
-const API_URL = 'https://newsdata.io/api/1/latest?apikey=pub_5507661984d1b35d983b103b0e36c2f70927c&category=politics&country=bd';
+const API_URL = 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5a3401ab7ff2433ebf3773976c206834';
 const API_URL_tech = 'https://newsdata.io/api/1/latest?apikey=pub_5507661984d1b35d983b103b0e36c2f70927c&category=politics&country=bd';
 
 
 async function fetchNews() {
     try {
-       
+
         imgItem.innerHTML = "Loading ....";
         carouselIndicators.innerHTML = ""; // Clear indicators
         const response = await fetch(API_URL);
@@ -87,18 +87,18 @@ async function fetchTech() {
         console.log(data);
 
 
-        if (!data.articles || data.articles.length === 0) {
+        if (!data.results || data.results.length === 0) {
             imgItem.innerHTML = "No articles found.";
             return;
         }
 
         // Populate the carousel 
-        for (let i = 0; i < Math.min(data.articles.length, 2); i++) {
-            displayCard(data.articles[i], i === 0);
+        for (let i = 0; i < Math.min(data.results.length, 2); i++) {
+            displayCard(data.results[i], i === 0);
 
         }
-        for (let i = 0; i < Math.min(data.articles.length, 9); i++) {
-            displaytechCard(data.articles[i]);
+        for (let i = 0; i < Math.min(data.results.length, 9); i++) {
+            displaytechCard(data.results[i]);
 
         }
         displayNewsCard
@@ -115,9 +115,9 @@ function displayCard(imageSrc) {
     const h5 = document.createElement('h5');
     const p = document.createElement('p');
     a.className = "flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700";
-    a.href = imageSrc.url;
+    a.href = imageSrc.source_url;
     image.className = 'object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg';
-    image.src = imageSrc.urlToImage;
+    image.src = imageSrc.image_url;
     div.className = "flex flex-col justify-between p-4 leading-normal";
     h5.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
     h5.textContent = imageSrc.title;
@@ -138,13 +138,13 @@ function displaytechCard(imageSrc) {
     const div= document.createElement('div');
     a.href=imageSrc.url;
     const image = document.createElement('img')
-    image.src=imageSrc.urlToImage;
+    image.src=imageSrc.image_url;
     image.className="rounded-t-lg";
     a.appendChild(image);
     div.className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
     div.appendChild(a);
     tech5Card.appendChild(div)
-    
+
     div.className="p-5";
     a.href=imageSrc.url;
     const h5=document.createElement('h5');
@@ -168,7 +168,7 @@ function displayNewsCard(imageSrc) {
     div.className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
     div.appendChild(a);
     News5Card.appendChild(div)
-    
+
     div.className="p-5";
     a.href=imageSrc.url;
     const h5=document.createElement('h5');
@@ -186,22 +186,3 @@ function displayNewsCard(imageSrc) {
 // call Api 
 fetchNews();
 fetchTech();
-
-{/* <div class=>
-<a href="#">
-    <h5 class=>Noteworthy
-        technology
-        acquisitions 2021</h5>
-</a>
-<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-    acquisitions of 2021 so far, in reverse chronological order.</p>
-<a href="#"
-    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    Read more
-    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-        fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9" />
-    </svg>
-</a>
-</div> */}
