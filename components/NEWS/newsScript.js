@@ -3,7 +3,7 @@ const tailwindcard = document.getElementById('tailwindcard');
 const carouselIndicators = document.getElementById('carouselIndicators');
 
 const API_URL = 'https://newsdata.io/api/1/latest?apikey=pub_5507661984d1b35d983b103b0e36c2f70927c&category=politics&country=bd';
-const API_URL_tech = 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=5a3401ab7ff2433ebf3773976c206834';
+const API_URL_tech = 'https://newsdata.io/api/1/latest?apikey=pub_5507661984d1b35d983b103b0e36c2f70927c&category=politics&country=bd';
 
 
 async function fetchNews() {
