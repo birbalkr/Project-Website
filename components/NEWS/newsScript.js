@@ -1,6 +1,8 @@
 const imgItem = document.getElementById('imgItem');
 const tailwindcard = document.getElementById('tailwindcard');
 const carouselIndicators = document.getElementById('carouselIndicators');
+const less = document.getElementById('less');
+const more = document.getElementById('more');
 
 const API_URL = 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5a3401ab7ff2433ebf3773976c206834';
 const API_URL_tech = 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=5a3401ab7ff2433ebf3773976c206834';
@@ -25,10 +27,16 @@ async function fetchNews() {
             displayImage(data.articles[i], i === 0);
             addIndicator(i);
         }
-
-        for (let i = 0; i < Math.min(data.articles.length, 9); i++) {
-            displayNewsCard(data.articles[i]);
-
+        let m = 8;
+        more.addEventListener("click", seemore);
+        function seemore(){
+            m+=5;
+            seeMoreNews(m);
+        }
+        function seeMoreNews(item) {
+            for (let i = 0; i < Math.min(data.articles.length, item); i++) {
+                displayNewsCard(data.articles[i]);
+            }
         }
     } catch (error) {
         imgItem.innerHTML = "Error: " + error.message;
@@ -136,26 +144,26 @@ function displayCard(imageSrc) {
 
 function displaytechCard(imageSrc) {
     // create Element 
-    const a =document.createElement('a');
-    const a1 =document.createElement('a');
+    const a = document.createElement('a');
+    const a1 = document.createElement('a');
     const button = document.createElement('button');
-    const div= document.createElement('div');
+    const div = document.createElement('div');
     const image = document.createElement('img')
-    const h5=document.createElement('h5');
+    const h5 = document.createElement('h5');
 
     // class of Element 
-    image.className="rounded-t-lg";
-    div.className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
-    div.className="p-5";
-    h5.className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-    button.className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full';
-    
+    image.className = "rounded-t-lg";
+    div.className = "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
+    div.className = "p-5";
+    h5.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
+    button.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full';
+
     // add link 
-    a.href=imageSrc.url;
-    image.src=imageSrc.urlToImage;
-    a.href=imageSrc.url;
-    a1.href=imageSrc.url;
-    
+    a.href = imageSrc.url;
+    image.src = imageSrc.urlToImage;
+    a.href = imageSrc.url;
+    a1.href = imageSrc.url;
+
     // appendChild
     a.appendChild(image);
     div.appendChild(a);
@@ -163,10 +171,10 @@ function displaytechCard(imageSrc) {
     div.appendChild(a);
     button.appendChild(a1);
     div.appendChild(button);
-    
-    h5.textContent=imageSrc.title;
+
+    h5.textContent = imageSrc.title;
     button.type = "button";
-    a1.textContent="Read More";
+    a1.textContent = "Read More";
 
     // add in html page 
 
@@ -176,26 +184,26 @@ function displaytechCard(imageSrc) {
 
 function displayNewsCard(imageSrc) {
     // create Element 
-    const a =document.createElement('a');
-    const a1 =document.createElement('a');
+    const a = document.createElement('a');
+    const a1 = document.createElement('a');
     const button = document.createElement('button');
-    const div= document.createElement('div');
+    const div = document.createElement('div');
     const image = document.createElement('img')
-    const h5=document.createElement('h5');
+    const h5 = document.createElement('h5');
 
     // class of Element 
-    image.className="rounded-t-lg";
-    div.className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
-    div.className="p-5";
-    h5.className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-    button.className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full';
-    
+    image.className = "rounded-t-lg";
+    div.className = "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700";
+    div.className = "p-5";
+    h5.className = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
+    button.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full';
+
     // add link 
-    a.href=imageSrc.url;
-    image.src=imageSrc.urlToImage;
-    a.href=imageSrc.url;
-    a1.href=imageSrc.url;
-    
+    a.href = imageSrc.url;
+    image.src = imageSrc.urlToImage;
+    a.href = imageSrc.url;
+    a1.href = imageSrc.url;
+
     // appendChild
     a.appendChild(image);
     div.appendChild(a);
@@ -203,16 +211,17 @@ function displayNewsCard(imageSrc) {
     div.appendChild(a);
     button.appendChild(a1);
     div.appendChild(button);
-    
-    h5.textContent=imageSrc.title;
+
+    h5.textContent = imageSrc.title;
     button.type = "button";
-    a1.textContent="Read More";
+    a1.textContent = "Read More";
 
     // add in html page 
 
     News5Card.appendChild(div)
     News5Card.appendChild(div);
 }
+
 
 // call Api 
 fetchNews();
